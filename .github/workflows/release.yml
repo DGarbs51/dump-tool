@@ -39,10 +39,7 @@ jobs:
         env:
           GOOS: ${{ matrix.goos }}
           GOARCH: ${{ matrix.goarch }}
-        run: |
-          ext=""
-          if [ "${{ matrix.goos }}" = "windows" ]; then ext=".exe"; fi
-          go build -o dump-tool-${{ matrix.goos }}-${{ matrix.goarch }}${ext} .
+        run: go build -o dump-tool-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.goos == 'windows' && '.exe' || '' }} .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
