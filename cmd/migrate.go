@@ -438,8 +438,8 @@ func resolveEnvConfig() {
 
 // --- Per-DB pipeline ---
 
-func migrateDatabase(ctx context.Context, database string) dbResult {
-	result := dbResult{
+func migrateDatabase(ctx context.Context, database string) (result dbResult) {
+	result = dbResult{
 		Database:  database,
 		StartTime: time.Now(),
 		Status:    "failed",
